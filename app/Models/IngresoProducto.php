@@ -24,7 +24,7 @@ class IngresoProducto extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'rut_usuario', 'rut_usuario');
+        return $this->belongsTo(Usuario::class, 'rut_usuario', 'rut');
     }
 }
 
