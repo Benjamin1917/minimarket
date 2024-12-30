@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_proveedor')->references('id_proveedor')->on('proveedores');
-            $table->foreign('id_producto')->references('id_producto')->on('productos');
-            $table->foreign('rut_usuario')->references('rut')->on('usuarios');
+            $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');
+            $table->foreign('rut_usuario')->references('rut')->on('usuarios')->onDelete('cascade');
         });
     }
 

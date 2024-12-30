@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'rut'; 
-    public $incrementing = false; // clave primaria no autoincremental
+    public $incrementing = false; 
 
     protected $fillable = [
         'rut', 'nombre', 'apellido', 'password', 'id_rol' 
@@ -33,6 +34,15 @@ class Usuario extends Model
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'id_rol', 'id_rol'); // Relación muchos a uno con roles
+    }
+    
+    public function esAdministrador():bool
+    {
+        return $this->rol->nombre_rol=='Administrador';
+    }
+
+    public function nombreRol():string{
+        return $this->rol->nombre_rol;
     }
 
 }

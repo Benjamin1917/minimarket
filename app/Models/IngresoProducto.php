@@ -14,12 +14,12 @@ class IngresoProducto extends Model
 
     public function proveedor()
     {
-        return $this->belongsTo(Proveedor::class, 'id_proveedor');
+        return $this->belongsTo(Proveedor::class, 'id_proveedor', 'id_proveedor');
     }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'id_producto');
+        return $this->belongsTo(Producto::class, 'id_producto', 'id_producto');
     }
 
     public function usuario()

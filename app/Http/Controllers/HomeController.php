@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\DetalleVenta;
+use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +13,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $productoMasVendido = DetalleVenta::select(
+                'id_producto',
+                DB::raw('SUM(cantidad) as cantidad_vendida'),
+                DB::raw('SUM(total) as total')
+            )
+            ->groupBy('id_producto')
+            ->orderByDesc('cantidad_vendida')
+            ->with('producto') 
+            ->first();
+    
+
+        $productosCriticos = Producto::where('cantidad_stock', '<', 5)->get();
+    
+  
+        $totalGanado = DetalleVenta::sum('total');
+    
+  
+        return view('home.index', compact('productoMasVendido', 'productosCriticos', 'totalGanado'));
     }
 
     /**

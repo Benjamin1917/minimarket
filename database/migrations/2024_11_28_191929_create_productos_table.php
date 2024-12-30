@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id('id_producto');
             $table->unsignedBigInteger('id_categoria');
-            $table->string('nombre_producto');
-            $table->string('marca_producto');
+            $table->unsignedBigInteger('id_marca');
+            $table->string('nombre_producto', 30);
             $table->decimal('precio_producto', 10, 2);
             $table->integer('cantidad_stock');
             $table->timestamps();
 
             $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+            $table->foreign('id_marca')->references('id_marca')->on('marcas');
+
+            // Restricción única
+            $table->unique(['nombre_producto', 'id_marca'], 'unique_nombre_marca');
         });
     }
 

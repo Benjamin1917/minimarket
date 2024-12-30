@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('motivo');
             $table->timestamps();
 
-            $table->foreign('id_producto')->references('id_producto')->on('productos');
+            $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');
             $table->foreign('rut_usuario')->references('rut')->on('usuarios');
         });
     }

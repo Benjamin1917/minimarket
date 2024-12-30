@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -11,10 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proveedores', function (Blueprint $table) {
-            $table->id('id_proveedor');
-            $table->string('nom_proveedor');
-            $table->string('contacto');
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->id('id_categoria');
+            $table->string('categoria',30);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proveedores');
+        Schema::dropIfExists('categorias');
     }
 };

@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->string('rut')->primary(); 
-            $table->string('nombre'); 
-            $table->string('apellido'); 
+            $table->string('nombre',30); 
+            $table->string('apellido',30); 
             $table->string('password'); 
             $table->unsignedBigInteger('id_rol')->nullable(); 
 

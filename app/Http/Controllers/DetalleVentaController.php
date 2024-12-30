@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Venta;
+use App\Models\DetalleVenta;
 
 use Illuminate\Http\Request;
 
@@ -61,4 +63,5 @@ class DetalleVentaController extends Controller
     {
         //
     }
+
 }
